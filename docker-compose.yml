@@ -1,21 +1,11 @@
-version: "3.3"
-   
+version: "3.9"
 services:
-  db:
-    image: postgres
-    environment:
-      - POSTGRES_DB=tortk
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=your-pass
-    restart: on-failure
-  tortk:
+  worker:
     build: .
-    command: bash start.sh
-    restart: on-failure
-    ports:
-      - "80:80"
-    depends_on: 
-      - db
-    links:
-      - db
-
+    environment:
+      API_HASH: $API_HASH
+      API_ID: $API_ID
+      BOT_TOKEN: $BOT_TOKEN
+      ALD_USR: $ALD_USR
+      OWNER_ID: $OWNER_ID
+      
